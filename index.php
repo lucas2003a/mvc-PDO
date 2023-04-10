@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+if (isset($_SESSION['login']) && $_SESSION['login']){
+  header('Location:views/index.php');
+}
+?>
 <!doctype html>
 <html lang="en">
 
@@ -67,7 +74,7 @@
             success: function (result){
               console.log(result);
               if (result["status"]){
-                window.location.href = "views/index.html"
+                window.location.href = "views/index.php"
               }else{
                 alert(result["mensaje"]);
               }
