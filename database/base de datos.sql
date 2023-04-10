@@ -151,4 +151,18 @@ BEGIN
 		WHERE nombreusuario = _nombreusuario AND estado = '1';
 END $$
 
-CALL spu_usuarios_login('JOEL');
+DELIMITER $$
+CREATE PROCEDURE spu_usuarios_registrar
+(
+	IN _nombreusuario		VARCHAR(30),
+	IN _claveacceso		VARCHAR(90),
+	IN _apellidos			VARCHAR(30),
+	IN _nombres				VARCHAR(30),
+	IN _nivelacceso		CHAR(1)
+)
+BEGIN
+	INSERT INTO usuarios(nombreusuario, claveacceso, apellidos, nombres, nivelacceso) VALUES
+					(_nombreusuario, _claveacceso, _apellidos, _nombres, _nivelacceso);
+END $$
+
+CALL spu_usuarios_registrar('MARIO1','SENATI','FREIRYA','MARIO','M');

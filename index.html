@@ -5,6 +5,7 @@ if (isset($_SESSION['login']) && $_SESSION['login']){
   header('Location:views/index.php');
 }
 ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -45,6 +46,7 @@ if (isset($_SESSION['login']) && $_SESSION['login']){
           </div>
           <div class="card-footer text-end">
             <button type="button" id="iniciar-sesion" class="btn btn-sm btn-success">Iniciar sesión</button>
+            <button type="button" id="registrarse" class="btn btn-sm btn-primary">Registrarse</button>
           </div>
         </div>
         <!-- fin card-->
