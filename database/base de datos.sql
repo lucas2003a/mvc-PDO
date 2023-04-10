@@ -114,7 +114,7 @@ CALL spu_cursos_actualizar(3,'Excel para Gestión','ETI','B','2023-06-20',350);
 
 CREATE TABLE usuarios
 (
-	idususario			INT AUTO_INCREMENT PRIMARY KEY,
+	idusuario			INT AUTO_INCREMENT PRIMARY KEY,
 	nombreusuario		VARCHAR(30)		NOT NULL,
 	claveacceso			VARCHAR(90)		NOT NULL,
 	apellidos			VARCHAR(30)		NOT NULL,
@@ -131,3 +131,24 @@ INSERT INTO usuarios (nombreusuario, claveacceso, apellidos, nombres)VALUES
 	('JOEL','123456','ROJAS MARCOS','JOSÉ JOEL');
 	
 SELECT * FROM usuarios;
+
+-- ATUALIZANDO POR CLAVE ENCRIPTADA
+-- Defecto: SENATI
+UPDATE usuarios SET
+	claveacceso = '$2y$10$127A9Zu5CXlig4ckIicczes9YzgVFN1/vZVvnCloNPlRWaYODJHSu'
+	WHERE idusuario = 1;
+
+UPDATE usuarios SET
+	claveacceso = '$2y$10$oeF4uf9NxsND.5FLHAgX4O1Eg3k/nr5AnV3ug0/EV3cKLM2cOGV7O'
+	WHERE idusuario = 2;
+	
+	
+DELIMITER $$
+CREATE PROCEDURE spu_usuarios_login (IN _nombreusuario VARCHAR (30))
+BEGIN
+	SELECT idusuario, nombreusuario, claveacceso, apellidos, nombres, nivelacceso 
+		FROM usuarios
+		WHERE nombreusuario = _nombreusuario AND estado = '1';
+END $$
+
+CALL spu_usuarios_login('JOEL');
